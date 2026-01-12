@@ -1,0 +1,33 @@
+About the Role
+m|rig is a growing consulting company in the financial industry that combines deep professional experience with a startup mindset. We work on challenging AI and Data Science projects and support our clients in Data Science, Quantitative Risk Management, and AI transformation.
+We are looking for AI / Machine Learning consultants with at least 3 years of experience who enjoy working with different clients and projects — from building machine learning models to deploying AI systems in production.
+
+What You Will Do
+	• Advise clients on designing and implementing AI and Data Science solutions, from idea to production
+	• Develop, optimize, and deploy machine learning and deep learning models
+	• Work with modern AI methods, including LLMs and agent-based systems
+	• Contribute to the growth of our AI capabilities and internal innovation
+
+What We Are Looking For
+	• 3+ years of experience as an AI Engineer, Machine Learning Engineer, or Data Scientist
+	• Degree in Computer Science, Engineering, Mathematics, or a related field
+	• Strong analytical and organizational skills
+	• Experience designing and deploying machine learning pipelines and models in production
+	• Experience with cloud platforms (GCP or Azure)
+	• Professional proficiency in English and German (B2 level)
+	• Willingness to travel for client work
+
+Nice to Have
+	• Experience with MLOps and model monitoring
+	• Solid software engineering and object-oriented programming skills
+	• Knowledge of cloud-based data architectures
+	• Interest in AI research and applying it to real-world problems
+	• Previous experience in the financial industry
+
+What We Offer
+	• Diverse and challenging client projects
+	• Continuous learning and mentoring
+	• A collaborative and motivated team
+	• Responsibility in client-facing AI projects
+	• Clear career growth opportunities
+Flexibility to live anywhere in Germany
