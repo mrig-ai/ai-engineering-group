@@ -1,0 +1,8 @@
+{
+  "draws": 1000,
+  "tune": 1000,
+  "chains": 4,
+  "target_accept": 0.9,
+  "stores": 29,
+  "pymc_version": "5.27.0"
+}
