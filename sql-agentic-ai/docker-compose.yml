@@ -1,0 +1,12 @@
+services:
+  sql-agent:
+    build: .
+    ports:
+      - "2024:2024" # Take port 2024 inside the container and expose it as port 2024 on my local machine.
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - /app/.venv  # Avoid overwriting the container's venv with local files
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}

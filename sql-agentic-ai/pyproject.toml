@@ -1,0 +1,20 @@
+[project]
+name = "sql-client"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "asyncio>=4.0.0",
+    "ipykernel>=7.1.0",
+    "langchain>=1.2.3",
+    "langchain-mcp-adapters>=0.2.1",
+    "langchain-openai>=1.1.7",
+    "langgraph>=1.0.5",
+    "langgraph-cli[inmem]>=0.4.11",
+    "mcp[cli]>=1.25.0",
+    "openai>=2.14.0",
+    "openai-agents>=0.6.5",
+    "pandas>=2.3.3",
+    "pre-commit>=4.5.1",
+]
