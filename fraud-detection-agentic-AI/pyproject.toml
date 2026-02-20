@@ -1,0 +1,27 @@
+[project]
+name = "fraud-detection-agentic-ai"
+version = "0.1.0"
+description = "Fraud Detection Analysis with LLM"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "dotenv>=0.9.9",
+    "graphviz>=0.21",
+    "ipykernel>=7.2.0",
+    "joblib>=1.5.3",
+    "langchain[openai]>=1.2.10",
+    "langgraph>=1.0.8",
+    "llvmlite>=0.40",
+    "matplotlib>=3.10.8",
+    "numba>=0.57,<0.60",
+    "numpy>=1.23,<1.25",
+    "pandas>=1.5,<2.0",
+    "plotly>=6.5.2",
+    "pydantic>=2.12.5",
+    "reportlab>=4.4.10",
+    "rich>=14.3.2",
+    "scikit-learn>=1.7.2",
+    "seaborn>=0.13.2",
+    "shap>=0.44",
+    "xgboost==1.7.6",
+]

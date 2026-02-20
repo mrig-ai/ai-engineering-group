@@ -1,0 +1,19 @@
+[
+    {
+        "Transaction ID":"cc928714-de9e-4abb-8409-102c75abb2ed",
+        "Customer ID":"d0cbd989-590b-4605-b3ba-baf375e914e2",
+        "Transaction Amount":5465.95,
+        "Transaction Date":"2024-03-09 09:56:04",
+        "Payment Method":"bank transfer",
+        "Product Category":"clothing",
+        "Quantity":2,
+        "Customer Age":29,
+        "Customer Location":"West Maria",
+        "Device Used":"mobile",
+        "IP Address":"12.251.232.91",
+        "Shipping Address":"571 Katherine Ford\nNew Steven, OR 18541",
+        "Billing Address":"571 Katherine Ford\nNew Steven, OR 18541",
+        "Account Age Days":21,
+        "Transaction Hour":4
+    }
+]

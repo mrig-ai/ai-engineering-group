@@ -1,0 +1,19 @@
+[
+    {
+        "Transaction ID":"7d187603-7961-4fce-9827-9698e2b6a201",
+        "Customer ID":"4d158416-caae-4b09-bd5b-15235deb9129",
+        "Transaction Amount":301.34,
+        "Transaction Date":"2024-01-22 00:53:31",
+        "Payment Method":"credit card",
+        "Product Category":"electronics",
+        "Quantity":3,
+        "Customer Age":35,
+        "Customer Location":"Kingstad",
+        "Device Used":"tablet",
+        "IP Address":"14.73.104.153",
+        "Shipping Address":"5230 Stephanie Forge\nCollinsbury, PR 81853",
+        "Billing Address":"5230 Stephanie Forge\nCollinsbury, PR 81853",
+        "Account Age Days":223,
+        "Transaction Hour":0
+    }
+]

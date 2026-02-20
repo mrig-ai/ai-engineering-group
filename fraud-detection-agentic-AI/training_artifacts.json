@@ -1,0 +1,329 @@
+{
+    "training_raw_data_num_stats": {
+        "Transaction Amount": {
+            "mean": 226.76824951171875,
+            "std": 270.39508056640625,
+            "min": 10.0,
+            "max": 12701.75,
+            "25%": 68.61000061035156,
+            "50%": 151.75999450683594,
+            "75%": 296.04998779296875
+        },
+        "Quantity": {
+            "mean": 3.00023015006599,
+            "std": 1.4147364737645765,
+            "min": 1.0,
+            "max": 5.0,
+            "25%": 2.0,
+            "50%": 3.0,
+            "75%": 4.0
+        },
+        "Customer Age": {
+            "mean": 34.65040588378906,
+            "std": 9.799893379211426,
+            "min": 9.0,
+            "max": 86.0,
+            "25%": 28.0,
+            "50%": 35.0,
+            "75%": 41.0
+        },
+        "Account Age Days": {
+            "mean": 179.64639784595832,
+            "std": 106.86422304292233,
+            "min": 1.0,
+            "max": 365.0,
+            "25%": 86.0,
+            "50%": 179.0,
+            "75%": 272.0
+        },
+        "Transaction Hour": {
+            "mean": 11.28696386576073,
+            "std": 6.975995283914547,
+            "min": 0.0,
+            "max": 23.0,
+            "25%": 5.0,
+            "50%": 11.0,
+            "75%": 17.0
+        },
+        "Transaction Day": {
+            "mean": 15.331926634404923,
+            "std": 8.938388415195426,
+            "min": 1.0,
+            "max": 31.0,
+            "25%": 7.0,
+            "50%": 15.0,
+            "75%": 23.0
+        },
+        "Transaction DOW": {
+            "mean": 2.946404227700563,
+            "std": 2.009459434558122,
+            "min": 0.0,
+            "max": 6.0,
+            "25%": 1.0,
+            "50%": 3.0,
+            "75%": 5.0
+        },
+        "Transaction Month": {
+            "mean": 2.050155062758325,
+            "std": 0.8727386904609646,
+            "min": 1.0,
+            "max": 4.0,
+            "25%": 1.0,
+            "50%": 2.0,
+            "75%": 3.0
+        }
+    },
+    "training_cat_stats": {
+        "Payment Method": {
+            "credit card": 25.01296715711035,
+            "bank transfer": 25.00271563499693,
+            "debit card": 25.002647744122008,
+            "PayPal": 24.981669463770714
+        },
+        "Product Category": {
+            "health & beauty": 20.052724053465422,
+            "electronics": 20.04776801959602,
+            "clothing": 19.981574416545822,
+            "toys & games": 19.977976200174886,
+            "home & garden": 19.93995731021785
+        },
+        "Device Used": {
+            "mobile": 33.3848625074001,
+            "tablet": 33.33021035308686,
+            "desktop": 33.28492713951303
+        }
+    },
+    "training_feature_correlations": {
+        "numerical_feature_correlations": {
+            "method": "spearman",
+            "description": "Upper-triangle Spearman correlation between raw numeric features.",
+            "features": {
+                "Transaction Amount": {
+                    "Quantity": -0.0006911658447585231,
+                    "Customer Age": 0.00014652782666107656,
+                    "Account Age Days": -0.013568358546213887,
+                    "Transaction Hour": -0.01118427475071622,
+                    "Transaction Day": 0.002382970601784616,
+                    "Transaction DOW": -8.900838704245611e-05,
+                    "Transaction Month": -0.0006169915717517187
+                },
+                "Quantity": {
+                    "Customer Age": 0.0007852454313128865,
+                    "Account Age Days": 0.0012151776508005747,
+                    "Transaction Hour": 6.652583529083973e-05,
+                    "Transaction Day": 0.0008481175194406038,
+                    "Transaction DOW": 0.0010085074926259598,
+                    "Transaction Month": -0.0010117000966185737
+                },
+                "Customer Age": {
+                    "Account Age Days": 0.00018169249704555232,
+                    "Transaction Hour": 0.0011897871424764496,
+                    "Transaction Day": -0.0004905164169206708,
+                    "Transaction DOW": 0.0003593793636388187,
+                    "Transaction Month": -0.0004832945545431092
+                },
+                "Account Age Days": {
+                    "Transaction Hour": 0.01675681286806058,
+                    "Transaction Day": -0.0009274351879600185,
+                    "Transaction DOW": 0.0007955080928804611,
+                    "Transaction Month": -2.926271520844224e-05
+                },
+                "Transaction Hour": {
+                    "Transaction Day": 0.005546423325722003,
+                    "Transaction DOW": 0.002453697431954743,
+                    "Transaction Month": -0.00775936859206316
+                },
+                "Transaction Day": {
+                    "Transaction DOW": 0.0471469237280543,
+                    "Transaction Month": -0.07066975062907513
+                },
+                "Transaction DOW": {
+                    "Transaction Month": 0.024068825283552635
+                }
+            }
+        },
+        "categorical_feature_correlations": {
+            "method": "cramers_v",
+            "description": "Upper-triangle Cram\u00e9r\u2019s V correlation between categorical features.",
+            "features": {
+                "Payment Method__Product Category": {
+                    "correlation": 0.0013478367427609333
+                },
+                "Payment Method__Device Used": {
+                    "correlation": 0.0011203756726609149
+                },
+                "Product Category__Device Used": {
+                    "correlation": 0.001250008032163539
+                }
+            }
+        },
+        "numerical_categorical_feature_correlations": {
+            "method": "correlation_ratio",
+            "description": "Correlation ratio (\u03b7) between numeric and categorical features.",
+            "features": {
+                "Transaction Amount__Payment Method": {
+                    "correlation": 0.000845687581936226
+                },
+                "Transaction Amount__Product Category": {
+                    "correlation": 0.0012632573579782
+                },
+                "Transaction Amount__Device Used": {
+                    "correlation": 0.0016821564357925286
+                },
+                "Quantity__Payment Method": {
+                    "correlation": 0.0014432791991423586
+                },
+                "Quantity__Product Category": {
+                    "correlation": 0.0014927342490482385
+                },
+                "Quantity__Device Used": {
+                    "correlation": 0.000609716673820421
+                },
+                "Customer Age__Payment Method": {
+                    "correlation": 0.0014910370545659411
+                },
+                "Customer Age__Product Category": {
+                    "correlation": 0.0012255451751523813
+                },
+                "Customer Age__Device Used": {
+                    "correlation": 0.0007594881772457461
+                },
+                "Account Age Days__Payment Method": {
+                    "correlation": 0.0015874844290259286
+                },
+                "Account Age Days__Product Category": {
+                    "correlation": 0.001607940618717655
+                },
+                "Account Age Days__Device Used": {
+                    "correlation": 0.0004819701026447035
+                },
+                "Transaction Hour__Payment Method": {
+                    "correlation": 0.0012637895218255335
+                },
+                "Transaction Hour__Product Category": {
+                    "correlation": 0.0021175320685402265
+                },
+                "Transaction Hour__Device Used": {
+                    "correlation": 0.0007435638014176904
+                },
+                "Transaction Day__Payment Method": {
+                    "correlation": 0.0023600598734583715
+                },
+                "Transaction Day__Product Category": {
+                    "correlation": 0.00211215210525759
+                },
+                "Transaction Day__Device Used": {
+                    "correlation": 0.0012748730958425628
+                },
+                "Transaction DOW__Payment Method": {
+                    "correlation": 0.002576979295254859
+                },
+                "Transaction DOW__Product Category": {
+                    "correlation": 0.0012219611487930594
+                },
+                "Transaction DOW__Device Used": {
+                    "correlation": 0.0011047752247441273
+                },
+                "Transaction Month__Payment Method": {
+                    "correlation": 0.0008238316009338584
+                },
+                "Transaction Month__Product Category": {
+                    "correlation": 0.0005614552606107688
+                },
+                "Transaction Month__Device Used": {
+                    "correlation": 0.0013697927871289628
+                }
+            }
+        },
+        "feature_target_correlations": {
+            "method": "spearman",
+            "description": "Monotonic correlation between raw numeric features and fraud label.",
+            "features": {
+                "Transaction Amount": {
+                    "correlation": 0.11005741538392325
+                },
+                "Account Age Days": {
+                    "correlation": -0.1381064218269389
+                },
+                "Transaction Hour": {
+                    "correlation": -0.11379912577030632
+                }
+            }
+        }
+    },
+    "training_transformed_num_stats": {
+        "Transaction Amount": {
+            "mean": -9.544528270364316e-10,
+            "std": 1.0000003422845614,
+            "min": -0.8016727566719055,
+            "max": 46.136138916015625,
+            "25%": -0.584915816783905,
+            "50%": -0.27740272879600525,
+            "75%": 0.2562239468097687
+        },
+        "Quantity": {
+            "mean": -2.0188991042459224e-08,
+            "std": 1.0000003182374289,
+            "min": -1.4138540029525757,
+            "max": 1.413528561592102,
+            "25%": -0.7070083618164062,
+            "50%": -0.00016268057515844703,
+            "75%": 0.7066829800605774
+        },
+        "Customer Age": {
+            "mean": 6.006613046547404e-10,
+            "std": 1.0000003431691833,
+            "min": -2.6174166202545166,
+            "max": 5.239814758300781,
+            "25%": -0.6786194443702698,
+            "50%": 0.03567435219883919,
+            "75%": 0.6479261517524719
+        },
+        "Account Age Days": {
+            "mean": 7.260356030066199e-09,
+            "std": 1.0000003402890496,
+            "min": -1.6717143058776855,
+            "max": 1.734478235244751,
+            "25%": -0.8763123154640198,
+            "50%": -0.0060487790033221245,
+            "75%": 0.8642146587371826
+        },
+        "Transaction Hour": {
+            "mean": 1.1165377525983128e-08,
+            "std": 1.0000003447266737,
+            "min": -1.6179723739624023,
+            "max": 1.6790493726730347,
+            "25%": -0.9012285470962524,
+            "50%": -0.041135918349027634,
+            "75%": 0.8189566731452942
+        },
+        "Transaction Day": {
+            "mean": 2.00359570876414e-08,
+            "std": 1.0000003375402162,
+            "min": -1.6034133434295654,
+            "max": 1.7528975009918213,
+            "25%": -0.9321511387825012,
+            "50%": -0.03713496774435043,
+            "75%": 0.8578812479972839
+        },
+        "Transaction DOW": {
+            "mean": 1.850825502914694e-08,
+            "std": 1.0000003559529764,
+            "min": -1.4662675857543945,
+            "max": 1.519611120223999,
+            "25%": -0.9686211347579956,
+            "50%": 0.026671746745705605,
+            "75%": 1.0219646692276
+        },
+        "Transaction Month": {
+            "mean": 1.0090600045152745e-08,
+            "std": 1.0000003630498786,
+            "min": -1.2032873630523682,
+            "max": 2.234168767929077,
+            "25%": -1.2032873630523682,
+            "50%": -0.057468608021736145,
+            "75%": 1.0883501768112183
+        }
+    },
+    "training_artifacts": "artifacts"
+}
