@@ -1,4 +1,4 @@
-# Floccs Chatbot 🤖
+# Financial Advisor Agent 🤖
 
 A developed financial advisor agentic ai, built with:
 
