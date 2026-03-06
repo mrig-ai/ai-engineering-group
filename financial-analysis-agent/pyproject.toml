@@ -1,0 +1,46 @@
+[project]
+name = "financial_analysis_agent"
+version = "0.1.0"
+description = "Build an intelligent financial analysis agent using LangGraph. This agent autonomously processes earnings reports, extracts key data, performs numerical analysis, and generates actionable insights—while addressing governance, privacy, and regulatory challenges."
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+  "fastapi",
+  "langchain-openai>=1.1.7",
+  "python-dotenv>=1.2.1",
+  "uvicorn[standard]",
+  "jupyterlab",
+  "langchain-mcp-adapters>=0.2.1",
+  "langchain>=1.2.6",
+  "langgraph>=1.0.6",
+  "ipykernel>=7.1.0",
+  "rich>=14.3.1",
+  "asyncio-throttle>=1.0.2",
+  "deepagents>=0.4.0",
+  "ddgs>=9.10.0",
+  "praw>=7.8.1",
+  "vadersentiment>=3.3.2",
+  "langgraph-cli[inmem]>=0.4.12",
+  "serpapi>=0.1.5",
+  "google-search-results>=2.4.2",
+]
+
+[dependency-groups]
+dev = [
+  "pre-commit",
+  "ruff",
+  "pytest",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "PL"]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
