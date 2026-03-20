@@ -68,7 +68,9 @@ The system follows a linear pipeline to ensure accuracy and safety:
 ## 🚀 Installation
 
 ### 1️⃣ Clone the Repository
-git clone [https://github.com/mrig-gmbh/chatbot.git](https://github.com/your-org/chatbot.git)
+git clone [git@github.com:mrig-ai/ai-engineering-group.git](git@github.com:mrig-ai/ai-engineering-group.git)
+
+You will need to go to the chatbot folder
 
 ```bash
 cd chatbot
