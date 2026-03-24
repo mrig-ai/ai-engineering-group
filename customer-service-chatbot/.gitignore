@@ -1,0 +1,13 @@
+# TODO.md
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+.env
+# uv.lock
+*.log
+*.ipynb
+# logs/
+docs/
+test.txt
