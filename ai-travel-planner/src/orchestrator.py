@@ -32,16 +32,18 @@ REPLAN FLOW (follow-up turns):
 from __future__ import annotations
 
 import operator
-from concurrent.futures import ThreadPoolExecutor
 from typing import Annotated, Any, Literal, Optional
-
+import re
 from langchain_core.messages import AIMessage, HumanMessage
 from langchain_openai import ChatOpenAI
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph import END, START, StateGraph
 from langgraph.types import interrupt
 from pydantic import BaseModel, Field
-
+import json as json
+from langgraph.types import Command
+from datetime import date, timedelta
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeout
 from src.agents.attractions_agent import AttractionsAgent
 from src.agents.budget_agent import BudgetManagerAgent
 from src.agents.flight_agent import FlightAgent
@@ -380,7 +382,6 @@ def extract_params_node(state: GraphState) -> dict:
 
     # ── Python safety net: extract adults if LLM missed it ───────────────
     if result.adults <= 1:
-        import re
         msg_lower = combined_message.lower()
         # "for N people/passengers/persons/adults/travelers"
         m = re.search(r'for\s+(\d+)\s+(?:people|persons?|passengers?|adults?|travelers?|travell?ers?)', msg_lower)
@@ -758,7 +759,6 @@ def search_flights_node(state: GraphState) -> dict:
     # For flights_only, no return date = one-way search. Don't infer one
     # from duration_days — that would turn a one-way into a round-trip.
     if not check_out and check_in and plan.duration_days and intent != "flights_only":
-        from datetime import date, timedelta
         try:
             check_out = (
                 date.fromisoformat(check_in) + timedelta(days=plan.duration_days)
@@ -811,7 +811,6 @@ def _run_with_timeout(fn, timeout_seconds: int, fallback_msg: str):
     Run fn() in a thread with a timeout.
     Returns fn()'s result or a graceful fallback dict if it times out.
     """
-    from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutureTimeout
     with ThreadPoolExecutor(max_workers=1) as ex:
         future = ex.submit(fn)
         try:
@@ -840,7 +839,6 @@ def search_hotels_node(state: GraphState) -> dict:
     check_out = plan.check_out_date
 
     if not check_out and check_in and plan.duration_days:
-        from datetime import date, timedelta
         try:
             check_out = (
                 date.fromisoformat(check_in) + timedelta(days=plan.duration_days)
@@ -857,9 +855,8 @@ def search_hotels_node(state: GraphState) -> dict:
     # ── Compute nights from actual dates (more reliable than duration_days) ──
     nights = 0
     if check_in and check_out:
-        from datetime import date as _date
         try:
-            nights = (_date.fromisoformat(check_out) - _date.fromisoformat(check_in)).days
+            nights = (date.fromisoformat(check_out) - date.fromisoformat(check_in)).days
         except ValueError:
             pass
     if nights <= 0:
@@ -872,7 +869,6 @@ def search_hotels_node(state: GraphState) -> dict:
     # 3. Fallback: total_budget × 40% ÷ nights (for replans that bypass allocate_budget)
     # 4. 0 → hotel agent treats as unlimited
     if hotel_constraint:
-        import re
         match = re.search(r"(\d+(?:\.\d+)?)", hotel_constraint)
         budget_per_night = float(match.group(1)) if match else 0.0
     elif plan.budget_allocation.hotels > 0 and nights > 0:
@@ -1222,7 +1218,6 @@ def build_itinerary_node(state: GraphState) -> dict:
         if state.get("budget_warning"):
             progress_msgs.append(state["budget_warning"])
 
-        import json as _json
         payload = {
             "itinerary":     result_dict,
             "flight":        outbound.model_dump()      if outbound      else None,
@@ -1231,7 +1226,7 @@ def build_itinerary_node(state: GraphState) -> dict:
             "budget_warning": state.get("budget_warning"),
             "currency":      plan.currency,
         }
-        msg_content = "__ITINERARY__:" + _json.dumps(payload)
+        msg_content = "__ITINERARY__:" + json.dumps(payload)
 
         return {
             "travel_plan": plan_dict,
@@ -1247,7 +1242,6 @@ def build_itinerary_node(state: GraphState) -> dict:
 
 def single_agent_node(state: GraphState) -> dict:
     logger.info("[NODE] single_agent (intent=%s)", state.get("intent", ""))
-    import json as _json
     intent = state.get("intent", "")
     plan_base = _get_plan(state)
 
@@ -1270,7 +1264,7 @@ def single_agent_node(state: GraphState) -> dict:
                 "reasoning":    fr.reasoning or "",
                 "currency":     plan_base.currency if plan_base else "EUR",
             }
-            msg = "__FLIGHTS__:" + _json.dumps(payload)
+            msg = "__FLIGHTS__:" + json.dumps(payload)
             result["messages"] = [AIMessage(content=msg)]
         return result
 
@@ -1294,7 +1288,7 @@ def single_agent_node(state: GraphState) -> dict:
                 "reasoning":    hr.reasoning or "",
                 "currency":     plan_base.currency if plan_base else "EUR",
             }
-            msg = "__HOTELS__:" + _json.dumps(payload)
+            msg = "__HOTELS__:" + json.dumps(payload)
             result["messages"] = [AIMessage(content=msg)]
         return result
 
@@ -1318,7 +1312,7 @@ def single_agent_node(state: GraphState) -> dict:
                 "reasoning":     ar.reasoning or "",
                 "currency":      plan_base.currency if plan_base else "EUR",
             }
-            msg = "__ATTRACTIONS__:" + _json.dumps(payload)
+            msg = "__ATTRACTIONS__:" + json.dumps(payload)
             result["messages"] = [AIMessage(content=msg)]
         return result
 
@@ -1433,7 +1427,6 @@ def replan_search_node(state: GraphState) -> dict:
     # Read from the raw last message — user_preferences may not contain the number.
     # "reduce hotel to €200/night" → active_constraints["hotel"] = "Max hotel budget €200/night"
     if intent == "replan_preferences":
-        import re
         last_msg = (state["messages"][-1].content if state.get("messages") else "") or ""
         existing_constraints = dict(state.get("active_constraints") or {})
 
@@ -1686,7 +1679,6 @@ class TravelOrchestrator:
         Yields:
             Same as chat() — progress events and final response.
         """
-        from langgraph.types import Command
 
         config = {"configurable": {"thread_id": thread_id}}
 
