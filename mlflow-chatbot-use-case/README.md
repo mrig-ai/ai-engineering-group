@@ -6,6 +6,8 @@ A developed RAG-based customer support chatbot, built with:
 * **OpenAI GPT models**
 * **In-memory vector store**
 * **uv** (Python package manager)
+* **MLflow** (for observability, version control, evaluation and prompt management)
+
 
 The assistant answers strictly based on FAQ/Terms documents.
 
@@ -28,26 +30,38 @@ The assistant answers strictly based on FAQ/Terms documents.
 ## 📂 Project Structure
 
 ```text
-src/chatbot/
-│
-├── agents/
-│   └── models.py
-│
-├── graphs/
-│   └── graph.py
-│
-├── prompts/
-│   └── prompts.py
-│
-├── rag/
-│   ├── data_loader/
-│   ├── retrievers/
-│   └── stores/
-│
-├── langgraph.json -> Entry point for the ui.
-|
+src/
+├── chatbot/
+│   ├── agents/
+│   │   └── models.py
+│   ├── graphs/
+│   │   └── graph.py
+│   ├── prompts/
+│   │   └── prompts.py
+│   ├── schema/
+│   │   └── basemodel.py           -> Pydantic structured output schemas (e.g., QueryExpansion)
+│   └── rag/
+│       ├── data_loader/
+│       ├── retrievers/
+│       └── stores/
+├── evaluation/
+│   ├── config.py                  -> Evaluation environment configurations
+│   ├── llm_evaluation.py          -> Language and tone evaluation runner
+│   ├── rag_evaluation.py          -> Context, groundedness, and relevance evaluation runner
+│   ├── scorers.py                 -> Custom MLflow GenAI scorer metrics definitions
+│   └── toolcall_evaluation.py     -> Tool call accuracy and efficiency evaluation runner
+├── prompt_management/
+│   ├── app.py                     -> Streamlit UI for registering prompts
+│   ├── prompt_evaluation.py       -> MLflow prompt performance evaluation
+│   ├── prompt_model_optimizer.py  -> GEPA-based prompt & hyperparameter optimizer
+│   ├── prompt_optimizer.py        -> Meta-Prompt optimization runner
+│   └── prompt_registry.py         -> Interface wrappers for MLflow GenAI registry
+├── langgraph.json                 -> Entry point for the UI
 data/
     └── zalando_cleaned.pdf
+test_data/
+    ├── evaluation_dataset.json    -> Datasets for prompt evaluations (multi-query/FAQ)
+    └── rag_eval_dataset.json      -> Input/expectation payloads for RAG and tool call evaluations
 
 ```
 
@@ -177,6 +191,49 @@ how the deployed workflow would behave.
      --judge-model $EVAL_JUDGE_MODEL
    ```
 
+## 🧪 Prompt Management&Optimization
+
+
+The src/prompt_management suite leverages MLflow’s GenAI capabilities to version, track, evaluate, and iteratively optimize prompt variations.
+
+1️⃣ UI-Driven Prompt Registration (Streamlit)
+
+A local portal is available to visually create, add provider-specific model configurations, update metadata tags, and push versioned prompts directly to the MLflow Prompt Registry.
+
+To launch the management dashboard locally:
+
+```Bash
+uv run streamlit run src/prompt_management/app.py
+```
+2️⃣ Run Prompt Evaluation
+
+Run automated performance metrics using programmatic LLM-as-a-judge scorers built out via mlflow.genai.evaluate(). This can test either your Query Expansion layer or the main Chatbot FAQ system.
+
+```Bash
+# Evaluate the query expansion prompt
+uv run python -m src.prompt_management.prompt_evaluation --name queries_prompt
+
+# Evaluate the final FAQ system prompt
+uv run python -m src.prompt_management.prompt_evaluation --name faq_prompt
+```
+3️⃣ Prompt Optimization Engines
+
+The platform supports two styles of algorithmic optimization loops targeting either specific dataset-grounded adjustments or high-level meta guidelines.
+
+Option A: GEPA Prompt & Hyperparameter Tuning
+Uses MLflow's GepaPromptOptimizer combined with historical trace runs to update structural JSON inputs, model choices, and variable definitions safely:
+
+```Bash
+uv run python -m src.prompt_management.prompt_model_optimizer --name queries_prompt
+uv run python -m src.prompt_management.prompt_model_optimizer --name faq_prompt
+```
+Option B: Meta-Prompt Adjustment
+Refines target prompts directly aligned with static semantic rules using the MetaPromptOptimizer engine:
+
+```Bash
+uv run python -m src.prompt_management.prompt_optimizer --name queries_prompt
+uv run python -m src.prompt_management.prompt_optimizer --name faq_prompt
+```
 ### Running MLflow locally
 
 - Start a tracking server from the repo root so that `mlruns.db` and `./mlruns` stay next to
