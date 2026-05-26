@@ -1,0 +1,7 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "agent": "./src/chatbot/graphs/graph.py:get_answer"
+  },
+  "env": ".env"
+}

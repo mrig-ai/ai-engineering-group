@@ -1,0 +1,281 @@
+{
+  "multiqueries_eval_data": [
+    {
+      "inputs": {
+        "question": "How do I delete my user account?"
+      },
+      "expectations": {
+        "detected_language": "English"
+      }
+    },
+    {
+      "inputs": {
+        "question": "What delivery options are available?"
+      },
+      "expectations": {
+        "detected_language": "English"
+      }
+    },
+    {
+      "inputs": {
+        "question": "Como posso devolver produtos perigosos?"
+      },
+      "expectations": {
+        "detected_language": "Portuguese"
+      }
+    },
+    {
+      "inputs": {
+        "question": "Comment choisir la bonne taille?"
+      },
+      "expectations": {
+        "detected_language": "French"
+      }
+    },
+    {
+      "inputs": {
+        "question": "Was ist ein Zalando-Partner-Artikel?"
+      },
+      "expectations": {
+        "detected_language": "German"
+      }
+    }
+  ],
+  "eval_data": [
+    {
+      "inputs": {
+        "question": "How do I return or exchange an item on Zalando?"
+      }
+    },
+    {
+      "inputs": {
+        "question": "How to create a Zalando account?"
+      }
+    },
+    {
+      "inputs": {
+        "question": "How can I track my Zalando order status?"
+      }
+    },
+    {
+      "inputs": {
+        "question": "What payment methods are accepted on Zalando?"
+      }
+    },
+    {
+      "inputs": {
+        "question": "How do I cancel my order on Zalando?"
+      }
+    },
+    {
+      "inputs": {
+        "question": "What is Zalando's return policy?"
+      }
+    },
+    {
+      "inputs": {
+        "question": "How do I contact Zalando customer service?"
+      }
+    },
+    {
+      "inputs": {
+        "question": "How do I change my shipping address on Zalando?"
+      }
+    },
+    {
+      "inputs": {
+        "question": "How do I delete my user account?"
+      }
+    },
+    {
+      "inputs": {
+        "question": "What delivery options are available?"
+      }
+    },
+    {
+      "inputs": {
+        "question": "Como posso devolver produtos perigosos?"
+      }
+    },
+    {
+      "inputs": {
+        "question": "Comment choisir la bonne taille?"
+      }
+    },
+    {
+      "inputs": {
+        "question": "Was ist ein Zalando-Partner-Artikel?"
+      }
+    },
+    {
+      "inputs": {
+        "question": "Where is my parcel?"
+      }
+    },
+    {
+      "inputs": {
+        "question": "Hoe kan ik mijn bestelling retourneren?"
+      }
+    },
+    {
+      "inputs": {
+        "question": "Jak mogę zrealizować kartę upominkową?"
+      }
+    },
+    {
+      "inputs": {
+        "question": "How long does the refund take?"
+      }
+    },
+    {
+      "inputs": {
+        "question": "Posso cambiare l'indirizzo di consegna?"
+      }
+    }
+  ],
+  "tool_calls_eval_data": [
+    {
+        "inputs": {"question": "What is Zalando's return policy?"},
+        "expectations": {
+            "expected_tool_calls": [
+                {"name": "search_zalando_faq", "arguments": {"query": "What is Zalando's return policy?"}}
+            ],
+            "tool_call_required": true
+        }
+    },
+    {
+        "inputs": {"question": "How can I track my order?"},
+        "expectations": {
+            "expected_tool_calls": [
+                {"name": "search_zalando_faq", "arguments": {"query": "How can I track my order?"}}
+            ],
+            "tool_call_required": true
+        }
+    },
+{
+        "inputs": {"question": "Do you offer free delivery?"},
+        "expectations": {
+            "expected_tool_calls": [
+                {"name": "search_zalando_faq", "arguments": {"query": "Do you offer free delivery?"}}
+            ],
+            "tool_call_required": true
+        }
+    },
+    {
+        "inputs": {"question": "Why is the sky blue?"},
+        "expectations": {
+            "expected_tool_calls": [],
+            "tool_call_required": false
+        }
+    },
+
+    {
+        "inputs": {"question": "What is 5 + 7?"},
+        "expectations": {
+            "expected_tool_calls": [],
+            "tool_call_required": false
+        }
+    },
+
+    {
+        "inputs": {"question": "Who won the World Cup in 2018?"},
+        "expectations": {
+            "expected_tool_calls": [],
+            "tool_call_required": false
+        }
+    },
+
+    {
+        "inputs": {"question": "Explain quantum physics in simple terms"},
+        "expectations": {
+            "expected_tool_calls": [],
+            "tool_call_required": false
+        }
+    }
+],
+  "faq_dataset": [
+    {
+      "inputs": {
+        "question": "What is Zalando's return policy?"
+      },
+      "expectations": {
+        "expected_facts": [
+          "Zalando offers a 30-day return policy",
+          "Returns are free of charge"
+        ]
+      }
+    },
+    {
+      "inputs": {
+        "question": "How many days do I have to return an item on Zalando?"
+      },
+      "expectations": {
+        "expected_facts": [
+          "Zalando's return window is 30 days"
+        ]
+      }
+    },
+    {
+      "inputs": {
+        "question": "Can I pay with PayPal on Zalando?"
+      },
+      "expectations": {
+        "expected_response": "Zalando accepts PayPal as a payment option."
+      }
+    },
+    {
+      "inputs": {
+        "question": "Does Zalando accept Apple Pay?"
+      },
+      "expectations": {
+        "expected_response": "Yes, Zalando supports Apple Pay as one of its payment options."
+      }
+    },
+    {
+      "inputs": {
+        "question": "What payment methods does Zalando support?"
+      },
+      "expectations": {
+        "expected_facts": [
+          "Zalando accepts Visa",
+          "Zalando accepts Mastercard",
+          "Zalando accepts PayPal",
+          "Zalando accepts Klarna",
+          "Zalando accepts Apple Pay",
+          "Zalando accepts invoice as a payment method",
+          "Zalando accepts SEPA direct debit"
+        ]
+      }
+    },
+    {
+      "inputs": {
+        "question": "Which parcel carriers does Zalando use for delivery?"
+      },
+      "expectations": {
+        "expected_facts": [
+          "Zalando uses DHL for deliveries",
+          "Zalando uses Hermes for deliveries"
+        ]
+      }
+    },
+    {
+      "inputs": {
+        "question": "Does Zalando offer gift cards?"
+      },
+      "expectations": {
+        "expected_facts": [
+          "Zalando sells gift cards",
+          "Gift cards can be redeemed on Zalando"
+        ]
+      }
+    },
+    {
+      "inputs": {
+        "question": "How can I subscribe to the Zalando newsletter?"
+      },
+      "expectations": {
+        "expected_response": "To subscribe to Zalando's newsletter, provide your email address on their site and choose your content preferences including fashion categories and notification types."
+      }
+    }
+  ]
+}
